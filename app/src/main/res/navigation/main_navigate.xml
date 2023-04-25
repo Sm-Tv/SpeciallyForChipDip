@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigate"
+    app:startDestination="@id/allValuteFragment">
+
+    <fragment
+        android:id="@+id/allValuteFragment"
+        android:name="com.example.chipdip.ui.fragments.AllValuteFragment"
+        android:label="AllValuteFragment">
+        <action
+            android:id="@+id/action_allValuteFragment_to_targetFragment"
+            app:destination="@id/targetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/targetFragment"
+        android:name="com.example.chipdip.ui.fragments.TargetFragment"
+        android:label="TargetFragment">
+        <action
+            android:id="@+id/action_targetFragment_to_allValuteFragment"
+            app:destination="@id/allValuteFragment" />
+    </fragment>
+</navigation>
