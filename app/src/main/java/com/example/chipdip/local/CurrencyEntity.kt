@@ -3,9 +3,6 @@ package com.example.chipdip.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
-import com.example.chipdip.local.converter.ValuteConverter
 import com.example.chipdip.model.Valute
 
 @Entity(tableName = "Currency")
@@ -18,8 +15,11 @@ data class CurrencyEntity(
     @ColumnInfo(name = "timeStamp")
     val timestamp: String,
 
+    @ColumnInfo(name = "remoteTime")
+    val remoteTime: String,
+
     @ColumnInfo(name = "valute")
-    val valute: Valute
+    val valute: Valute,
 )
 
 

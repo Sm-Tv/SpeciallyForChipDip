@@ -46,6 +46,10 @@ buildscript {
                             "retrofit" : 'com.squareup.retrofit2:retrofit:2.9.0',
                             "converter" : 'com.squareup.retrofit2:converter-gson:2.9.0',
                             "loging" : "com.squareup.okhttp3:logging-interceptor:4.9.3"
+                    ],
+                    "navigation" : [
+                            "navigateFragment" : 'androidx.navigation:navigation-fragment-ktx:2.2.2',
+                            "navigationUi" : 'androidx.navigation:navigation-ui-ktx:2.2.2'
                     ]
             ],
             "test"    : [
