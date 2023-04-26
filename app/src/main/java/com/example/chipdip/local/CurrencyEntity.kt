@@ -21,10 +21,3 @@ data class CurrencyEntity(
     @ColumnInfo(name = "valute")
     val valute: Valute,
 )
-
-
-//data class LocalValute(
-//    val name: String,
-//    val value: Double,
-//    val previous: Double,
-//)

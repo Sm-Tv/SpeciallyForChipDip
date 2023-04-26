@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:id="@+id/valuteName"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/valuteName"
+        app:layout_constraintStart_toEndOf="@+id/valuteName"
+        app:layout_constraintTop_toTopOf="@+id/valuteName">
+
+        <TextView
+            android:id="@+id/valuteNow"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            tools:layout_editor_absoluteY="345dp" />
+
+        <TextView
+            android:id="@+id/valutePrevious"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewIncreaseDecrease"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/difference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewIncreaseDecrease"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewIncreaseDecrease"
+        app:layout_constraintTop_toTopOf="@+id/imageViewIncreaseDecrease" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@ package com.example.chipdip.model.valute
 
 import com.google.gson.annotations.SerializedName
 
-data class AUD(
+data class ItemValute(
     @SerializedName("ID") val iD: String,
     @SerializedName("NumCode") val numCode: String,
     @SerializedName("CharCode") val charCode: String,
