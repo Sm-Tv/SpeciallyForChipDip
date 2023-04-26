@@ -10,7 +10,7 @@ import com.example.chipdip.databinding.ItemValuteBinding
 import com.example.chipdip.model.valute.ItemValute
 import kotlin.math.abs
 
-class ValuteAdapter(): RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
+class ValuteAdapter() : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
 
 
     private var items = mutableListOf<ItemValute>()
@@ -21,12 +21,12 @@ class ValuteAdapter(): RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
         notifyDataSetChanged()
     }
 
-    class ItemHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding = ItemValuteBinding.bind(view)
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: ItemValute){
+        fun bind(item: ItemValute) {
             binding.valuteName.text = item.charCode
             binding.valuteNow.text = "New value: " + String.format("%.3f", item.value)
             binding.valutePrevious.text = "Old value: " + String.format("%.3f", item.previous)

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/allValuteFragment"
-        android:name="com.example.chipdip.ui.fragments.AllValuteFragment"
+        android:name="com.example.chipdip.ui.fragments.MainValuteFragment"
         android:label="AllValuteFragment">
         <action
             android:id="@+id/action_allValuteFragment_to_targetFragment"

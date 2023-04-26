@@ -1,11 +1,18 @@
 package com.example.chipdip.ui.fragments
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
+import com.example.chipdip.local.CurrencyEntity
+import com.example.chipdip.model.FullData
+import com.example.chipdip.model.Valute
+import com.example.chipdip.model.valute.ItemValute
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainValuteViewModel(application: Application) : AndroidViewModel(application), MainValuteViewModelInterface {
 
@@ -29,5 +36,27 @@ class MainValuteViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    override fun collectList(data: Valute): MutableList<ItemValute> {
+        return mutableListOf(
+            data.aUD, data.aZN, data.gBP, data.aMD, data.bYN, data.bGN, data.bRL,
+            data.hUF, data.vND, data.hKD, data.gEL, data.dKK, data.aED, data.uSD,
+            data.eUR, data.eGP, data.iNR, data.iDR, data.kZT, data.cAD, data.qAR,
+            data.kGS, data.cNY, data.mDL, data.nZD, data.nOK, data.pLN, data.rON,
+            data.xDR, data.sGD, data.tJS, data.tHB, data.tRY, data.tMT, data.uZS,
+            data.uAH, data.cZK, data.sEK, data.cHF, data.rSD, data.zAR, data.kRW,
+            data.jPY
+        )
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun getCurrencyEntity(data: FullData): CurrencyEntity {
+        val currentDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
+        return CurrencyEntity(
+            uid = 1,
+            timestamp = currentDate,
+            remoteTime = data.date,
+            valute = data.valute
+        )
+    }
 
 }
