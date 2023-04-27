@@ -69,6 +69,7 @@ class MainValuteFragment : Fragment() {
                 showToastShort(resources.getString(R.string.show_data_BD))
             }
             adapter.setData(items)
+            showProgressBar(false)
         }
     }
 
@@ -87,6 +88,7 @@ class MainValuteFragment : Fragment() {
     }
 
     private fun getData() {
+        showProgressBar(true)
         if (viewModelMainFragment.checkNetwork(requireContext())) viewModelRemote.getValute()
         else {
             showToastShort(resources.getString(R.string.not_connection_network))
@@ -95,13 +97,22 @@ class MainValuteFragment : Fragment() {
                     binding.dataText.text =
                         String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp)
                     adapter.setData(viewModelMainFragment.collectList(it.valute))
+                    showProgressBar(false)
                 }
-            } else showToastShort(resources.getString(R.string.not_connection_network_and_clear_BD))
+            } else {
+                showToastShort(resources.getString(R.string.not_connection_network_and_clear_BD))
+                showProgressBar(false)
+            }
         }
     }
 
     private fun showToastShort(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showProgressBar(isShow: Boolean){
+        if (isShow) binding.progressBar.visibility = View.VISIBLE
+        else binding.progressBar.visibility = View.GONE
     }
 
 }
