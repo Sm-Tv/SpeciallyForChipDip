@@ -12,6 +12,7 @@ android {
         versionCode projectVersionCode
         versionName rootProject.version
         testInstrumentationRunner deps.testInstrumentationRunner
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -37,6 +38,8 @@ dependencies {
     implementation deps.androidX.retrofitMy.values()
     implementation deps.androidX.navigation.values()
     implementation deps.androidX.coroutines.values()
+    implementation deps.androidX.room.values()
+    implementation deps.androidX.chars.values()
     implementation deps.zxing
     implementation deps.prefsComponent
     implementation deps.gson
@@ -44,7 +47,8 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.androidTest
 
-    implementation "androidx.room:room-runtime:2.2.5"
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     kapt "androidx.room:room-compiler:2.2.5"
-    implementation "androidx.room:room-ktx:2.2.5"
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }

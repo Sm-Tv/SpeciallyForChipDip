@@ -1,4 +1,4 @@
-# app special for Chip and Dip
+# app special for Chip and Dip version 2.0.0.0
 
 
 

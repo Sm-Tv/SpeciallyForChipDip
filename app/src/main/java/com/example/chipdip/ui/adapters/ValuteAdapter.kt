@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chipdip.R
 import com.example.chipdip.databinding.ItemValuteBinding
@@ -34,6 +35,10 @@ class ValuteAdapter(private val context: Context) : RecyclerView.Adapter<ValuteA
                 binding.imageViewIncreaseDecrease.setBackgroundResource(R.drawable.ic_baseline_arrow_downward_24)
             else binding.imageViewIncreaseDecrease.setBackgroundResource(R.drawable.ic_baseline_arrow_upward_24)
             binding.difference.text = String.format(context.getString(R.string.format), abs(item.value - item.previous))
+
+            binding.itemTarget.setOnClickListener {
+                binding.itemTarget.findNavController().navigate(R.id.action_allValuteFragment_to_targetFragment)
+            }
         }
 
         companion object {
