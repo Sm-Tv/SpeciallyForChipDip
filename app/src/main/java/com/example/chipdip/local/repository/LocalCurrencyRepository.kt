@@ -6,7 +6,8 @@ import com.example.chipdip.local.CurrencyEntity
 
 class LocalCurrencyRepository(private val currencyDao: CurrencyDao) {
 
-    val readAllData: LiveData<CurrencyEntity> = currencyDao.getAllLiveData()
+    val readAllData: LiveData<List<CurrencyEntity>> = currencyDao.getAllLiveData()
+    val readLastDateData: LiveData<CurrencyEntity> = currencyDao.getLastDateLiveData()
 
     fun addFullCurrency(currencyEntity: CurrencyEntity) {
         currencyDao.insert(currencyEntity)

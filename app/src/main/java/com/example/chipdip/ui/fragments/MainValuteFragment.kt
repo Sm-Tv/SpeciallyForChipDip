@@ -74,7 +74,7 @@ class MainValuteFragment : Fragment() {
     }
 
     private fun bindingLocalValute() {
-        viewModelLocal.readAllData.observe(viewLifecycleOwner) { currency ->
+        viewModelLocal.readLastDateData.observe(viewLifecycleOwner) { currency ->
             localValute = currency
             //todo оставил, если вдруг нужно сразу подгружать данные с БД
             //getData()
@@ -92,6 +92,7 @@ class MainValuteFragment : Fragment() {
         if (viewModelMainFragment.checkNetwork(requireContext())) viewModelRemote.getValute()
         else {
             showToastShort(resources.getString(R.string.not_connection_network))
+            showToastShort(resources.getString(R.string.show_data_BD))
             if (localValute != null) {
                 localValute?.let {
                     binding.dataText.text =

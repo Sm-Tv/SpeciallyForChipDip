@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.chipdip.local.converter.ValuteConverter
 
 
-@Database(entities = [CurrencyEntity::class], version = 2)
+@Database(entities = [CurrencyEntity::class], version = 3)
 @TypeConverters(ValuteConverter::class)
 abstract class CurrencyDataBase : RoomDatabase() {
     abstract fun modelDbDao(): CurrencyDao

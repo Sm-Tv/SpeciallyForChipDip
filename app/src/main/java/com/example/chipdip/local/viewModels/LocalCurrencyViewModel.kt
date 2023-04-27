@@ -12,13 +12,15 @@ import kotlinx.coroutines.launch
 
 class LocalCurrencyViewModel(application: Application) : AndroidViewModel(application) {
 
-    val readAllData: LiveData<CurrencyEntity>
+    val readAllData: LiveData<List<CurrencyEntity>>
+    val readLastDateData: LiveData<CurrencyEntity>
     private val repository: LocalCurrencyRepository
 
     init {
         val currencyDao = CurrencyDataBase.getDatabase(application).modelDbDao()
         repository = LocalCurrencyRepository(currencyDao)
         readAllData = repository.readAllData
+        readLastDateData = repository.readLastDateData
     }
 
     fun addFullCurrency(currencyEntity: CurrencyEntity) = viewModelScope.launch(Dispatchers.IO) {

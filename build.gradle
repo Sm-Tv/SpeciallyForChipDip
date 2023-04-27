@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 def major = 1
-def minor = 1
+def minor = 2
 def fix = 0
 def build = 1
 def tag = "" // format example: "-alpha04"

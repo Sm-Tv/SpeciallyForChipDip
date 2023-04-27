@@ -49,9 +49,11 @@ class MainValuteViewModel : ViewModel(), MainValuteViewModelInterface {
     @SuppressLint("SimpleDateFormat")
     override fun getCurrencyEntity(data: FullData): CurrencyEntity {
         val currentDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
+        val date = Date().time
         return CurrencyEntity(
             uid = 1,
             timestamp = currentDate,
+            date = date,
             remoteTime = data.date,
             valute = data.valute
         )
