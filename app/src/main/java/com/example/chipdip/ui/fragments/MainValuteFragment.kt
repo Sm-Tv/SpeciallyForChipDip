@@ -52,8 +52,7 @@ class MainValuteFragment : Fragment() {
                 val str = response.body()
                 str?.let {
                     val split = it.date.split("T")
-                    binding.dataText.text =
-                        String.format(resources.getString(R.string.data_remote_valute_rate), split[0], split[1])
+                    bindingEditText(String.format(resources.getString(R.string.data_remote_valute_rate), split[0], split[1]))
                     items = viewModelMainFragment.collectList(it.valute)
                     viewModelLocal.addFullCurrency(viewModelMainFragment.getCurrencyEntity(str))
                 }
@@ -61,8 +60,7 @@ class MainValuteFragment : Fragment() {
                 if (localValute != null) {
                     localValute?.let {
                         items = viewModelMainFragment.collectList(it.valute)
-                        binding.dataText.text =
-                            String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp)
+                        bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp))
                     }
                 }
                 showToastShort(String.format(resources.getString(R.string.error_network_connect)))
@@ -95,8 +93,7 @@ class MainValuteFragment : Fragment() {
             showToastShort(resources.getString(R.string.show_data_BD))
             if (localValute != null) {
                 localValute?.let {
-                    binding.dataText.text =
-                        String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp)
+                    bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp))
                     adapter.setData(viewModelMainFragment.collectList(it.valute))
                     showProgressBar(false)
                 }
@@ -111,9 +108,13 @@ class MainValuteFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showProgressBar(isShow: Boolean){
+    private fun showProgressBar(isShow: Boolean) {
         if (isShow) binding.progressBar.visibility = View.VISIBLE
         else binding.progressBar.visibility = View.GONE
+    }
+
+    private fun bindingEditText(str: String) {
+        binding.dataText.text = str
     }
 
 }
