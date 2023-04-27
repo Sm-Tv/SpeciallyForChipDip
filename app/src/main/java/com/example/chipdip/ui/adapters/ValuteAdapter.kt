@@ -1,6 +1,7 @@
 package com.example.chipdip.ui.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.chipdip.databinding.ItemValuteBinding
 import com.example.chipdip.model.valute.ItemValute
 import kotlin.math.abs
 
-class ValuteAdapter() : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
+class ValuteAdapter(private val context: Context) : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
 
 
     private var items = mutableListOf<ItemValute>()
@@ -25,15 +26,14 @@ class ValuteAdapter() : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
 
         private val binding = ItemValuteBinding.bind(view)
 
-        @SuppressLint("SetTextI18n")
-        fun bind(item: ItemValute) {
+        fun bind(item: ItemValute, context: Context) {
             binding.valuteName.text = item.charCode
-            binding.valuteNow.text = "New value: " + String.format("%.3f", item.value)
-            binding.valutePrevious.text = "Old value: " + String.format("%.3f", item.previous)
+            binding.valuteNow.text = String.format(context.getString(R.string.new_value), item.value)
+            binding.valutePrevious.text = String.format(context.getString(R.string.old_value), item.previous)
             if (item.previous > item.value)
                 binding.imageViewIncreaseDecrease.setBackgroundResource(R.drawable.ic_baseline_arrow_downward_24)
             else binding.imageViewIncreaseDecrease.setBackgroundResource(R.drawable.ic_baseline_arrow_upward_24)
-            binding.difference.text = String.format("%.3f", abs(item.value - item.previous))
+            binding.difference.text = String.format(context.getString(R.string.format), abs(item.value - item.previous))
         }
 
         companion object {
@@ -53,11 +53,12 @@ class ValuteAdapter() : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         items.getOrNull(position)?.let {
-            holder.bind(it)
+            holder.bind(it, context)
         }
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
 }

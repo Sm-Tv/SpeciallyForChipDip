@@ -1,6 +1,5 @@
 package com.example.chipdip.ui.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.chipdip.R
 import com.example.chipdip.databinding.FragmentAllValuteBinding
 import com.example.chipdip.local.CurrencyEntity
 import com.example.chipdip.local.viewModels.LocalCurrencyViewModel
@@ -42,17 +42,18 @@ class MainValuteFragment : Fragment() {
         binding.recyclerViewValue.addItemDecoration(
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         )
-        adapter = ValuteAdapter()
+        adapter = ValuteAdapter(requireContext())
         binding.recyclerViewValue.adapter = adapter
     }
 
-    @SuppressLint("SetTextI18n")
     private fun bindingRemoteValute() {
         viewModelRemote.fullData.observe(viewLifecycleOwner) { response ->
             if (response.isSuccessful) {
                 val str = response.body()
                 str?.let {
-                    binding.dataText.text = "Показан курс валют за: ${it.date}"
+                    val split = it.date.split("T")
+                    binding.dataText.text =
+                        String.format(resources.getString(R.string.data_remote_valute_rate), split[0], split[1])
                     items = viewModelMainFragment.collectList(it.valute)
                     viewModelLocal.addFullCurrency(viewModelMainFragment.getCurrencyEntity(str))
                 }
@@ -60,12 +61,12 @@ class MainValuteFragment : Fragment() {
                 if (localValute != null) {
                     localValute?.let {
                         items = viewModelMainFragment.collectList(it.valute)
-                        binding.dataText.text = "Показан курс валют за: ${it.timestamp}"
+                        binding.dataText.text =
+                            String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp)
                     }
                 }
-                Toast.makeText(requireContext(), "ERROR connect! Code error ${response.code()} ", Toast.LENGTH_SHORT)
-                    .show()
-                Toast.makeText(requireContext(), "Показанны данные из БД", Toast.LENGTH_SHORT).show()
+                showToastShort(String.format(resources.getString(R.string.error_network_connect)))
+                showToastShort(resources.getString(R.string.show_data_BD))
             }
             adapter.setData(items)
         }
@@ -74,7 +75,8 @@ class MainValuteFragment : Fragment() {
     private fun bindingLocalValute() {
         viewModelLocal.readAllData.observe(viewLifecycleOwner) { currency ->
             localValute = currency
-            getData()
+            //todo оставил, если вдруг нужно сразу подгружать данные с БД
+            //getData()
         }
     }
 
@@ -84,19 +86,22 @@ class MainValuteFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun getData() {
         if (viewModelMainFragment.checkNetwork(requireContext())) viewModelRemote.getValute()
         else {
-            Toast.makeText(requireContext(), "Нет подключения к интернету!", Toast.LENGTH_SHORT).show()
+            showToastShort(resources.getString(R.string.not_connection_network))
             if (localValute != null) {
                 localValute?.let {
-                    binding.dataText.text = "Показан курс валют за: ${it.timestamp}"
+                    binding.dataText.text =
+                        String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp)
                     adapter.setData(viewModelMainFragment.collectList(it.valute))
                 }
-            } else Toast.makeText(requireContext(), "БД пустая и нет соединения с интернетом", Toast.LENGTH_SHORT)
-                .show()
+            } else showToastShort(resources.getString(R.string.not_connection_network_and_clear_BD))
         }
+    }
+
+    private fun showToastShort(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
 }

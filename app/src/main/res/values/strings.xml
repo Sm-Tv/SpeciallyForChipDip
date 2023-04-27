@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Chip Dip</string>
+
+
+    <string name="new_value">New value: %.3f ₽</string>
+    <string name="old_value">Old value: %.3f ₽</string>
+    <string name="format">%.3f ₽</string>
+    <string name="data_remote_valute_rate">The exchange rate is shown. Date: %s Time: %s</string>
+    <string name="data_local_valute_rate">The exchange rate for the date is shown: %s</string>
+
+
+    <string name="not_connection_network">No internet connection!</string>
+    <string name="not_connection_network_and_clear_BD">The database is empty and there is no internet connection</string>
+    <string name="error_network_connect">Request error! Error code: %s</string>
+    <string name="show_data_BD">Data from the database is shown</string>
+
+    <string name="button_start">Start</string>
+
 </resources>

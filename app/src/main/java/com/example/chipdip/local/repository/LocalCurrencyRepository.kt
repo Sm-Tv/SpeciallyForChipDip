@@ -8,11 +8,11 @@ class LocalCurrencyRepository(private val currencyDao: CurrencyDao) {
 
     val readAllData: LiveData<CurrencyEntity> = currencyDao.getAllLiveData()
 
-    suspend fun addFullCurrency(currencyEntity: CurrencyEntity) {
+    fun addFullCurrency(currencyEntity: CurrencyEntity) {
         currencyDao.insert(currencyEntity)
     }
 
-    suspend fun deleteAll() {
+    fun deleteAll() {
         currencyDao.deleteAllNotes()
     }
 }

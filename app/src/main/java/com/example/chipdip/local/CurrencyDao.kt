@@ -14,4 +14,5 @@ interface CurrencyDao {
 
     @Query("DELETE FROM Currency")
     fun deleteAllNotes()
+
 }

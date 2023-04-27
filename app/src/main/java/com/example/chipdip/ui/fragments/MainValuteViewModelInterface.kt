@@ -13,4 +13,5 @@ interface MainValuteViewModelInterface {
     fun collectList(data: Valute): MutableList<ItemValute>
 
     fun getCurrencyEntity(data: FullData): CurrencyEntity
+
 }

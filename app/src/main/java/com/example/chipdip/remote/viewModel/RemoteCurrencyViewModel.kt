@@ -19,4 +19,5 @@ class RemoteCurrencyViewModel: ViewModel() {
             fullData.value = repository
         }
     }
+
 }

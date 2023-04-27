@@ -10,7 +10,6 @@ import com.example.chipdip.local.converter.ValuteConverter
 abstract class CurrencyDataBase : RoomDatabase() {
     abstract fun modelDbDao(): CurrencyDao
 
-
     companion object {
         @Volatile
         private var INSTANCE: CurrencyDataBase? = null

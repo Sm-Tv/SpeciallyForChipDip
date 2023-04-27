@@ -20,4 +20,5 @@ data class CurrencyEntity(
 
     @ColumnInfo(name = "valute")
     val valute: Valute,
+
 )

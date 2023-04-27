@@ -1,12 +1,11 @@
 package com.example.chipdip.ui.fragments
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.example.chipdip.local.CurrencyEntity
 import com.example.chipdip.model.FullData
 import com.example.chipdip.model.Valute
@@ -14,13 +13,12 @@ import com.example.chipdip.model.valute.ItemValute
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainValuteViewModel(application: Application) : AndroidViewModel(application), MainValuteViewModelInterface {
+class MainValuteViewModel : ViewModel(), MainValuteViewModelInterface {
 
     override fun checkNetwork(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
             val network = connectivityManager.activeNetwork ?: return false
             val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
             return when {

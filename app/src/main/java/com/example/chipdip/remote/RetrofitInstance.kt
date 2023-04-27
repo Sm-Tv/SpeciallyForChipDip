@@ -17,4 +17,5 @@ object RetrofitInstance {
     val api: RemoteApi by lazy {
         retrofit.create(RemoteApi::class.java)
     }
+
 }

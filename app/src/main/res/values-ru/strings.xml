@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Chip Dip</string>
+
+    <string name="new_value">Новый курс: %.3f ₽</string>
+    <string name="old_value">Старый курс: %.3f ₽</string>
+    <string name="format">%.3f ₽</string>
+    <string name="data_remote_valute_rate">Показан курс валют. Дата: %s Время: %s</string>
+    <string name="data_local_valute_rate">Показан курс валют за дату: %s</string>
+
+    <string name="not_connection_network">Нет подключения к интернету!</string>
+    <string name="not_connection_network_and_clear_BD">БД пустая и нет соединения с интернетом</string>
+    <string name="error_network_connect">Ошибка запроса! код ошибки %s</string>
+    <string name="show_data_BD">Показанны данные из БД</string>
+
+    <string name="button_start">Старт</string>
+
+</resources>
