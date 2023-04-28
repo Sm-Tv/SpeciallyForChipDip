@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/allValuteFragment"
         android:name="com.example.chipdip.ui.fragments.MainValuteFragment"
-        android:label="AllValuteFragment">
+        android:label="App Chi and Dip">
         <action
             android:id="@+id/action_allValuteFragment_to_targetFragment"
             app:destination="@id/targetFragment" />
@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/targetFragment"
         android:name="com.example.chipdip.ui.fragments.TargetFragment"
-        android:label="TargetFragment">
+        android:label="Valute">
         <action
             android:id="@+id/action_targetFragment_to_allValuteFragment"
             app:destination="@id/allValuteFragment" />
