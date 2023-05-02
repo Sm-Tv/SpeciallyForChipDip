@@ -2,6 +2,7 @@ package com.example.chipdip.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,11 @@ class ValuteAdapter(private val context: Context) : RecyclerView.Adapter<ValuteA
             binding.difference.text = String.format(context.getString(R.string.format), abs(item.value - item.previous))
 
             binding.itemTarget.setOnClickListener {
-                binding.itemTarget.findNavController().navigate(R.id.action_allValuteFragment_to_targetFragment)
+                val bundle = Bundle()
+                bundle.putString("nameValute", item.name)
+                bundle.putString("charValute", item.charCode)
+                bundle.putString("valueValute", item.value.toString())
+                binding.itemTarget.findNavController().navigate(R.id.action_allValuteFragment_to_targetFragment, bundle)
             }
         }
 

@@ -14,10 +14,21 @@
     </fragment>
     <fragment
         android:id="@+id/targetFragment"
-        android:name="com.example.chipdip.ui.fragments.TargetFragment"
+        android:name="com.example.chipdip.ui.fragments.target.TargetFragment"
         android:label="TargetFragment">
         <action
             android:id="@+id/action_targetFragment_to_allValuteFragment"
             app:destination="@id/allValuteFragment" />
+        <argument
+            android:name="nameValute"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="charValute"
+            app:argType="string" />
+        <argument
+            android:name="valueValute"
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

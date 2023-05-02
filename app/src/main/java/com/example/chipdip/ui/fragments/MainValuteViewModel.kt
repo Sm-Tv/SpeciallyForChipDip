@@ -36,13 +36,13 @@ class MainValuteViewModel : ViewModel(), MainValuteViewModelInterface {
 
     override fun collectList(data: Valute): MutableList<ItemValute> {
         return mutableListOf(
-            data.aUD, data.aZN, data.gBP, data.aMD, data.bYN, data.bGN, data.bRL,
-            data.hUF, data.vND, data.hKD, data.gEL, data.dKK, data.aED, data.uSD,
-            data.eUR, data.eGP, data.iNR, data.iDR, data.kZT, data.cAD, data.qAR,
-            data.kGS, data.cNY, data.mDL, data.nZD, data.nOK, data.pLN, data.rON,
-            data.xDR, data.sGD, data.tJS, data.tHB, data.tRY, data.tMT, data.uZS,
-            data.uAH, data.cZK, data.sEK, data.cHF, data.rSD, data.zAR, data.kRW,
-            data.jPY
+            data.AUD, data.AZN, data.GBP, data.AMD, data.BYN, data.BGN, data.BRL,
+            data.HUF, data.VND, data.HKD, data.GEL, data.DKK, data.AED, data.USD,
+            data.EUR, data.EGP, data.INR, data.IDR, data.KZT, data.CAD, data.QAR,
+            data.KGS, data.CNY, data.MDL, data.NZD, data.NOK, data.PLN, data.RON,
+            data.XDR, data.SGD, data.TJS, data.THB, data.TRY, data.TMT, data.UZS,
+            data.UAH, data.CZK, data.SEK, data.CHF, data.RSD, data.ZAR, data.KRW,
+            data.JPY
         )
     }
 
@@ -51,7 +51,7 @@ class MainValuteViewModel : ViewModel(), MainValuteViewModelInterface {
         val currentDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
         val date = Date().time
         return CurrencyEntity(
-            uid = 1,
+            uid = 0,
             timestamp = currentDate,
             date = date,
             remoteTime = data.date,

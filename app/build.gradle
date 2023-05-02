@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        applicationId "ru.m4bank.networkchecker"
+        applicationId "com.example.chipDip"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode projectVersionCode
@@ -51,4 +52,6 @@ dependencies {
 
     kapt "androidx.room:room-compiler:2.2.5"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }

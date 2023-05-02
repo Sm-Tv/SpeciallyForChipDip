@@ -74,8 +74,6 @@ class MainValuteFragment : Fragment() {
     private fun bindingLocalValute() {
         viewModelLocal.readLastDateData.observe(viewLifecycleOwner) { currency ->
             localValute = currency
-            //todo оставил, если вдруг нужно сразу подгружать данные с БД
-            //getData()
         }
     }
 
