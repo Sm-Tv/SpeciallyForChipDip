@@ -10,12 +10,12 @@ import androidx.navigation.fragment.navArgs
 import com.example.chipdip.databinding.FragmentTargetBinding
 import com.example.chipdip.local.viewModels.LocalCurrencyViewModel
 import com.example.chipdip.model.valute.ItemValute
+import com.example.chipdip.ui.adapters.utils.getField
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.reflect.full.memberProperties
 
 
 class TargetFragment : Fragment() {
@@ -53,7 +53,6 @@ class TargetFragment : Fragment() {
     private fun viewChart(canPop: List<Entry>) {
         val dataset = LineDataSet(canPop, "График изменения валюты от времени (value/date)")
         val data = LineData(dataset)
-
         binding.chart.data = data
         binding.chart.xAxis.valueFormatter = XAxisTimeFormatter()
         binding.chart.invalidate()
@@ -65,13 +64,4 @@ class TargetFragment : Fragment() {
         return format.parse(str)
     }
 
-    @Throws(IllegalAccessException::class, ClassCastException::class)
-    inline fun <reified T> Any.getField(fieldName: String): T? {
-        this::class.memberProperties.forEach { kCallable ->
-            if (fieldName == kCallable.name) {
-                return kCallable.getter.call(this) as T?
-            }
-        }
-        return null
-    }
 }

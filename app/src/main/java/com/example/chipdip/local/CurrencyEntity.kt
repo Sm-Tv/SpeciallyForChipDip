@@ -8,7 +8,7 @@ import com.example.chipdip.model.Valute
 @Entity(tableName = "Currency")
 data class CurrencyEntity(
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "uid")
     val uid: Int,
 

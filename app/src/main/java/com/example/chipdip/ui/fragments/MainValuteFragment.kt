@@ -30,8 +30,8 @@ class MainValuteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAllValuteBinding.inflate(layoutInflater)
-        bindingRemoteValute()
         bindingLocalValute()
+        bindingRemoteValute()
         initClick()
         initial()
         return binding.root
@@ -52,15 +52,27 @@ class MainValuteFragment : Fragment() {
                 val str = response.body()
                 str?.let {
                     val split = it.date.split("T")
-                    bindingEditText(String.format(resources.getString(R.string.data_remote_valute_rate), split[0], split[1]))
+                    bindingEditText(
+                        String.format(
+                            resources.getString(R.string.data_remote_valute_rate),
+                            split[0],
+                            split[1]
+                        )
+                    )
                     items = viewModelMainFragment.collectList(it.valute)
-                    viewModelLocal.addFullCurrency(viewModelMainFragment.getCurrencyEntity(str))
+                    if (localValute?.remoteTime != it.date)
+                        viewModelLocal.addFullCurrency(viewModelMainFragment.getCurrencyEntity(str))
                 }
             } else {
                 if (localValute != null) {
                     localValute?.let {
                         items = viewModelMainFragment.collectList(it.valute)
-                        bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp))
+                        bindingEditText(
+                            String.format(
+                                resources.getString(R.string.data_local_valute_rate),
+                                it.timestamp
+                            )
+                        )
                     }
                 }
                 showToastShort(String.format(resources.getString(R.string.error_network_connect)))
