@@ -8,16 +8,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chipdip.R
 import com.example.chipdip.databinding.ItemValuteBinding
+import com.example.chipdip.local.model.ItemValueEntity
 import com.example.chipdip.model.valute.ItemValute
 import kotlin.math.abs
 
 class ValuteAdapter(private val context: Context) : RecyclerView.Adapter<ValuteAdapter.ItemHolder>() {
 
 
-    private var items = mutableListOf<ItemValute>()
+    private var items = mutableListOf<ItemValueEntity>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(items: MutableList<ItemValute>) {
+    fun setData(items: MutableList<ItemValueEntity>) {
         this.items = items
         notifyDataSetChanged()
     }
@@ -26,7 +27,7 @@ class ValuteAdapter(private val context: Context) : RecyclerView.Adapter<ValuteA
 
         private val binding = ItemValuteBinding.bind(view)
 
-        fun bind(item: ItemValute, context: Context) {
+        fun bind(item: ItemValueEntity, context: Context) {
             binding.valuteName.text = item.charCode
             binding.valuteNow.text = String.format(context.getString(R.string.new_value), item.value)
             binding.valutePrevious.text = String.format(context.getString(R.string.old_value), item.previous)

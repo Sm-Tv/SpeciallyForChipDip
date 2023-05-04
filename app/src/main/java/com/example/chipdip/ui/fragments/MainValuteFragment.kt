@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.chipdip.R
 import com.example.chipdip.databinding.FragmentAllValuteBinding
-import com.example.chipdip.local.CurrencyEntity
+import com.example.chipdip.local.model.CurrencyEntity
+import com.example.chipdip.local.model.CurrencyWithValue
+import com.example.chipdip.local.model.ItemValueEntity
 import com.example.chipdip.local.viewModels.LocalCurrencyViewModel
 import com.example.chipdip.model.valute.ItemValute
 import com.example.chipdip.remote.viewModel.RemoteCurrencyViewModel
@@ -24,9 +26,9 @@ class MainValuteFragment : Fragment() {
     private val viewModelLocal: LocalCurrencyViewModel by viewModels()
     private val viewModelRemote: RemoteCurrencyViewModel by viewModels()
     private val viewModelMainFragment: MainValuteViewModel by viewModels()
-    private var localValute: CurrencyEntity? = null
+    private var localValute: CurrencyWithValue? = null
     private lateinit var adapter: ValuteAdapter
-    private var items: MutableList<ItemValute> = mutableListOf()
+    private var items: MutableList<ItemValueEntity> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAllValuteBinding.inflate(layoutInflater)
@@ -59,8 +61,8 @@ class MainValuteFragment : Fragment() {
             } else {
                 if (localValute != null) {
                     localValute?.let {
-                        items = viewModelMainFragment.collectList(it.valute)
-                        bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp))
+                        items = it.listItemValueEntity.toMutableList()
+                        bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.currencyEntity.timestamp))
                     }
                 }
                 showToastShort(String.format(resources.getString(R.string.error_network_connect)))
@@ -93,8 +95,8 @@ class MainValuteFragment : Fragment() {
             showToastShort(resources.getString(R.string.show_data_BD))
             if (localValute != null) {
                 localValute?.let {
-                    bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.timestamp))
-                    adapter.setData(viewModelMainFragment.collectList(it.valute))
+                    bindingEditText(String.format(resources.getString(R.string.data_local_valute_rate), it.currencyEntity.timestamp))
+                    adapter.setData(it.listItemValueEntity.toMutableList())
                     showProgressBar(false)
                 }
             } else {

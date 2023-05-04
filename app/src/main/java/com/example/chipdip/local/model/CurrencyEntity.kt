@@ -1,16 +1,15 @@
-package com.example.chipdip.local
+package com.example.chipdip.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.chipdip.model.Valute
 
 @Entity(tableName = "Currency")
 data class CurrencyEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "uid")
-    val uid: Int,
+    val uid: Long = 0,
 
     @ColumnInfo(name = "timeStamp")
     val timestamp: String,
@@ -18,7 +17,7 @@ data class CurrencyEntity(
     @ColumnInfo(name = "remoteTime")
     val remoteTime: String,
 
-    @ColumnInfo(name = "valute")
-    val valute: Valute,
+//    @ColumnInfo(name = "valute")
+//    val valute: ItemValueEntity,
 
 )

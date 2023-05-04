@@ -2,17 +2,28 @@ package com.example.chipdip.local.repository
 
 import androidx.lifecycle.LiveData
 import com.example.chipdip.local.CurrencyDao
-import com.example.chipdip.local.CurrencyEntity
+import com.example.chipdip.local.CurrencyDaoo
+import com.example.chipdip.local.model.CurrencyEntity
+import com.example.chipdip.local.model.CurrencyWithValue
+import com.example.chipdip.local.model.ItemValueEntity
 
-class LocalCurrencyRepository(private val currencyDao: CurrencyDao) {
+class LocalCurrencyRepository(private val currencyDao: CurrencyDao, private val currencyDaoo: CurrencyDaoo,) {
 
-    val readAllData: LiveData<CurrencyEntity> = currencyDao.getAllLiveData()
+    val readAllData: LiveData<CurrencyWithValue> = currencyDao.getAllLiveData()
 
-    fun addFullCurrency(currencyEntity: CurrencyEntity) {
-        currencyDao.insert(currencyEntity)
+    fun addFullCurrency(currencyWithValue: CurrencyWithValue) {
+        currencyDaoo.insert(currencyWithValue)
     }
 
+//    fun addFullCurrencyParent(currencyEntity: CurrencyEntity) {
+//        currencyDao.insert(currencyEntity)
+//    }
+//    fun addFullCurrencyChilde(itemValueEntity: List<ItemValueEntity>) {
+//        currencyDao.insert(itemValueEntity)
+//    }
+
     fun deleteAll() {
-        currencyDao.deleteAllNotes()
+        currencyDao.deleteAllCurrency()
+        currencyDao.deleteAllItemValue()
     }
 }

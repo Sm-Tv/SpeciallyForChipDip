@@ -6,10 +6,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.ViewModel
-import com.example.chipdip.local.CurrencyEntity
+import com.example.chipdip.local.model.CurrencyEntity
+import com.example.chipdip.local.model.CurrencyWithValue
+import com.example.chipdip.local.model.ItemValueEntity
 import com.example.chipdip.model.FullData
 import com.example.chipdip.model.Valute
 import com.example.chipdip.model.valute.ItemValute
+import com.example.chipdip.model.valute.convert
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,26 +37,35 @@ class MainValuteViewModel : ViewModel(), MainValuteViewModelInterface {
         }
     }
 
-    override fun collectList(data: Valute): MutableList<ItemValute> {
+    override fun collectList(data: Valute): MutableList<ItemValueEntity> {
         return mutableListOf(
-            data.aUD, data.aZN, data.gBP, data.aMD, data.bYN, data.bGN, data.bRL,
-            data.hUF, data.vND, data.hKD, data.gEL, data.dKK, data.aED, data.uSD,
-            data.eUR, data.eGP, data.iNR, data.iDR, data.kZT, data.cAD, data.qAR,
-            data.kGS, data.cNY, data.mDL, data.nZD, data.nOK, data.pLN, data.rON,
-            data.xDR, data.sGD, data.tJS, data.tHB, data.tRY, data.tMT, data.uZS,
-            data.uAH, data.cZK, data.sEK, data.cHF, data.rSD, data.zAR, data.kRW,
-            data.jPY
+            data.aUD.convert(), data.aZN.convert(), data.gBP.convert(), data.aMD.convert(),
+            data.bYN.convert(), data.bGN.convert(), data.bRL.convert(), data.hUF.convert(),
+            data.vND.convert(), data.hKD.convert(), data.gEL.convert(), data.dKK.convert(),
+            data.aED.convert(), data.uSD.convert(), data.eUR.convert(), data.eGP.convert(),
+            data.iNR.convert(), data.iDR.convert(), data.kZT.convert(), data.cAD.convert(),
+            data.qAR.convert(), data.kGS.convert(), data.cNY.convert(), data.mDL.convert(),
+            data.nZD.convert(), data.nOK.convert(), data.pLN.convert(), data.rON.convert(),
+            data.xDR.convert(), data.sGD.convert(), data.tJS.convert(), data.tHB.convert(),
+            data.tRY.convert(), data.tMT.convert(), data.uZS.convert(), data.uAH.convert(),
+            data.cZK.convert(), data.sEK.convert(), data.cHF.convert(), data.rSD.convert(),
+            data.zAR.convert(), data.kRW.convert(), data.jPY.convert()
         )
     }
 
     @SuppressLint("SimpleDateFormat")
-    override fun getCurrencyEntity(data: FullData): CurrencyEntity {
+    override fun getCurrencyEntity(data: FullData): CurrencyWithValue {
         val currentDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
-        return CurrencyEntity(
+        val currencyEntity = CurrencyEntity(
             uid = 1,
             timestamp = currentDate,
             remoteTime = data.date,
-            valute = data.valute
+//            valute = data.valute
+        )
+        val listItemValueEntity = collectList(data.valute)
+        return CurrencyWithValue(
+            currencyEntity = currencyEntity,
+            listItemValueEntity = listItemValueEntity
         )
     }
 
