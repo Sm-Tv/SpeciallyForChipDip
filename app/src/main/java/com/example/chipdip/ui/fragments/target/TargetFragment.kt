@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TargetFragment : Fragment() {
@@ -46,7 +47,7 @@ class TargetFragment : Fragment() {
                     canPop.add(Entry(date.time.toFloat(), it.toFloat()))
                 }
             }
-            viewChart(canPop)
+            viewChart(canPop.reversed())
         }
     }
 
